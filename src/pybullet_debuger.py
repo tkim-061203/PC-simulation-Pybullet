@@ -26,10 +26,8 @@ class pybulletDebug:
 
         is_connected = p.isConnected()
         print(f"Connection status: {is_connected}")
-
-        if p.getConnectionInfo()['isConnected'] == 0:
-            cubePos, cubeOrn = p.getBasePositionAndOrientation(boxId)
-            
+        if not p.isConnected():
+            physicsClient = p.connect(p.GUI)  # or whatever connection mode you're using            
         robot_position, robot_orientation = p.getBasePositionAndOrientation(boxId)
 
         p.resetDebugVisualizerCamera(
